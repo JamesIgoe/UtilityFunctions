@@ -17,7 +17,7 @@ def parse_winget_output(output):
         if line.strip().startswith(('---', '====')):
             data_start_index = i + 1
             break
-            
+
     if data_start_index == -1:
         return packages
 
@@ -29,12 +29,12 @@ def parse_winget_output(output):
             
         # Use regex to split by 2 or more spaces, which usually separates winget columns
         # Output columns are typically: Name | Id | Version | Available | Source
-        parts = re.split(r'\s{2,}', line)
-        
+        parts = re.split(r'\s{1,}', line)
+
         if len(parts) >= 5:
             name = parts[0].strip()
             pkg_id = parts[1].strip()
-            
+
             if name and pkg_id:
                 packages.append({
                     'name': name,
